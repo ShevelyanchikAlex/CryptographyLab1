@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -23,7 +26,24 @@
     </rowConstraints>
     <Pane prefHeight="600.0" prefWidth="900.0">
       <children>
-         <Button fx:id="openFileBtn" layoutX="53.0" layoutY="38.0" mnemonicParsing="false" text="Open File" />
+         <MenuBar prefHeight="29.0" prefWidth="900.0">
+           <menus>
+             <Menu mnemonicParsing="false" text="Open File">
+               <items>
+                     <MenuItem fx:id="openToEncryptMenuItem" mnemonicParsing="false" onAction="#chooseOpenFileToPlainTextArea" text="Open file with plainText" />
+                     <MenuItem fx:id="openToDecryptMenuItem" mnemonicParsing="false" onAction="#chooseOpenFileToCipherTextArea" text="Open file with cipherText" />
+                 <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+             </Menu>
+             <Menu mnemonicParsing="false" text="Save in file">
+               <items>
+                     <MenuItem fx:id="savePlainTextMenuItem" mnemonicParsing="false" onAction="#chooseSavePlainTextAreaToFile" text="Save in file plainText" />
+                     <MenuItem fx:id="saveCipherTextMenuItem" mnemonicParsing="false" onAction="#chooseSaveCipherTextAreaToFile" text="Save in file cipherText" />
+                 <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+             </Menu>
+           </menus>
+         </MenuBar>
          <VBox layoutX="43.0" layoutY="200.0" prefHeight="200.0" prefWidth="100.0">
             <children>
                <Label prefHeight="16.0" prefWidth="74.0" text="Encryption " wrapText="true">
@@ -73,8 +93,8 @@
          </VBox>
          <HBox layoutX="177.0" layoutY="75.0" prefHeight="450.0" prefWidth="600.0">
             <children>
-               <TextArea fx:id="plainTextArea" prefHeight="450.0" prefWidth="300.0" promptText="This will be the text to encrypt" />
-               <TextArea fx:id="cipherTextArea" prefHeight="450.0" prefWidth="300.0" promptText="There will be text to decrypt" />
+               <TextArea fx:id="plainTextArea" prefHeight="450.0" prefWidth="300.0" promptText="This will be the text to encrypt" wrapText="true" />
+               <TextArea fx:id="cipherTextArea" prefHeight="450.0" prefWidth="300.0" promptText="There will be text to decrypt" wrapText="true" />
             </children>
          </HBox>
          <HBox layoutX="284.0" layoutY="534.0" prefHeight="46.0" prefWidth="385.0">
@@ -97,7 +117,7 @@
             </children>
          </HBox>
          <Label layoutX="301.0" layoutY="43.0" text="Plain Text" wrapText="true" />
-         <Label layoutX="569.0" layoutY="43.0" text="Encrypted Text" wrapText="true" />
+         <Label layoutX="569.0" layoutY="43.0" text="Cipher Text" wrapText="true" />
       </children>
     </Pane>
 </GridPane>

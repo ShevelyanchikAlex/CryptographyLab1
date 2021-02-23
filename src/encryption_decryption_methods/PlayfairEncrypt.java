@@ -34,23 +34,24 @@ public class PlayfairEncrypt {
         return toEncrypt.toString();
     }
 
+
     private static StringBuilder transformInputStrToCorrectStr(String inputPlainText) {
         StringBuilder correctStr = new StringBuilder(inputPlainText.toUpperCase());
+        for (int j = 0; j < correctStr.length(); j++) {
+            if (correctStr.charAt(j) == 'J') {
+                correctStr.setCharAt(j, 'I');
+            }
+        }
         int currentIndex = 0;
         while (currentIndex < correctStr.length() - 1) {
-            if (correctStr.charAt(currentIndex) == 'J') {
-                correctStr.insert(currentIndex + 1, 'I');
-                correctStr.deleteCharAt(currentIndex);
-            }
             if (correctStr.charAt(currentIndex) == correctStr.charAt(currentIndex + 1)) {
                 correctStr.insert(currentIndex + 1, 'X');
-                currentIndex++;
             }
-            currentIndex++;
+            currentIndex += 2;
         }
-        if (correctStr.length() % 2 != 0) {
+        if (correctStr.length() % 2 != 0)
             correctStr.append('X');
-        }
+        System.out.println(correctStr.toString());
         return correctStr;
     }
 
@@ -98,5 +99,6 @@ public class PlayfairEncrypt {
         }
         return engInputPlainText.toString();
     }
+
 
 }

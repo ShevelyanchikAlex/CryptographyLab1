@@ -142,8 +142,8 @@ public class ColumnMethodEncryption {
 
 
     static String decryption(String inputCipherTextMessage, String inputKeyword) {
-
-        String cipherTextMessage = inputCipherTextMessage.toUpperCase().replace(" ", "");
+        String rusInputCipherText = getOnlyRussianCharacters(inputCipherTextMessage);
+        String cipherTextMessage = rusInputCipherText.toUpperCase().replace(" ", "");
         String keyword = inputKeyword.toUpperCase();
 
         int numberOfRows = cipherTextMessage.length() / keyword.length();
@@ -151,7 +151,10 @@ public class ColumnMethodEncryption {
         int[] keywordNumberArr = transformKeywordToKeywordNumberArr(keyword);
         int[] columnOrderOfKeyword = getColumnOrder(keyword, keywordNumberArr);
 
+        System.out.println(Arrays.toString(columnOrderOfKeyword));
+
         char[][] cipherTextMessageMatrix = transformCipherTextMessageToCipherTextMessageMatrix(numberOfRows, keyword, cipherTextMessage, columnOrderOfKeyword);
+
 
         StringBuilder plainTextMessage = transformCipherTextMessageMatrixToPlainTextMessage(numberOfRows, keyword, cipherTextMessageMatrix);
         System.out.println("Plain Text: " + plainTextMessage);

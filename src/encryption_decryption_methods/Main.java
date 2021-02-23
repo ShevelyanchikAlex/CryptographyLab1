@@ -24,9 +24,8 @@ public class Main extends Application {
 //        System.out.println(VigenereEncrypt.decryption("ХЯМЪГЧТЭ","Код"));
 //        ColumnMethod.encryption("Постоянно занятой человек", "букварь");
 //        ColumnMethod.decryption("ОНЛ.ПНОЕТАЕ.СЗЧ.ЯЯО.ООЙКНТВ.", "букварь");
-
-        System.out.println(PlayfairEncrypt.encryption("itISverys"));
-        System.out.println(PlayfairEncrypt.decryption("KPKQRMYPQZ"));
+//        System.out.println(PlayfairEncrypt.encryption("itISverys"));
+//        System.out.println(PlayfairEncrypt.decryption("KPKQRMYPQZ"));
     }
 
 
