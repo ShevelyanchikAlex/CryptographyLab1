@@ -18,13 +18,13 @@ public class VigenereEncrypt {
     }
 
     static String decryption(String encryptedText, String keyword) {
-        String upperPlainTextMessage = getOnlyRussianCharacters(encryptedText).toUpperCase();
+        String upperCipherTextMessage = getOnlyRussianCharacters(encryptedText).toUpperCase();
         StringBuilder decryptedText = new StringBuilder();
         StringBuilder dynamicKeyword = new StringBuilder();
         dynamicKeyword.append(keyword.toUpperCase());
 
-        for (int i = 0; i < upperPlainTextMessage.length(); i++) {
-            decryptedText.append(RUS_ALPHABET.charAt((RUS_ALPHABET.indexOf(upperPlainTextMessage.charAt(i)) + POWER_OF_RUS_ALPHABET -
+        for (int i = 0; i < upperCipherTextMessage.length(); i++) {
+            decryptedText.append(RUS_ALPHABET.charAt((RUS_ALPHABET.indexOf(upperCipherTextMessage.charAt(i)) + POWER_OF_RUS_ALPHABET -
                     RUS_ALPHABET.indexOf(dynamicKeyword.charAt(i))) % POWER_OF_RUS_ALPHABET));
             dynamicKeyword.append(decryptedText.charAt(i));
         }

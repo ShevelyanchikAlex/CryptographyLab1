@@ -9,7 +9,6 @@ public class ColumnMethodEncryption {
         String rusInputPlainText = getOnlyRussianCharacters(inputPlainText);
         StringBuilder plainTextMessage = new StringBuilder(rusInputPlainText.toUpperCase().replace(" ", ""));
 
-        //check keyword
         String keyword = inputKeyword.toUpperCase();
         int[] keywordNumberArr = transformKeywordToKeywordNumberArr(keyword);
 
@@ -47,6 +46,18 @@ public class ColumnMethodEncryption {
             }
         }
         return rusInputPlainText.toString();
+    }
+
+    static String getOnlyRussianCharactersAndDot(String inputKeyword) {
+        StringBuilder rusInputKeyword = new StringBuilder();
+        for (int i = 0; i < inputKeyword.length(); i++) {
+            if ((inputKeyword.charAt(i) >= 'а' && inputKeyword.charAt(i) <= 'я')
+                    || (inputKeyword.charAt(i) >= 'А' && inputKeyword.charAt(i) <= 'Я')
+                    || inputKeyword.charAt(i) == 'Ё' || inputKeyword.charAt(i) >= 'ё' || inputKeyword.charAt(i) == '.') {
+                rusInputKeyword.append(inputKeyword.charAt(i));
+            }
+        }
+        return rusInputKeyword.toString();
     }
 
 
@@ -142,11 +153,13 @@ public class ColumnMethodEncryption {
 
 
     static String decryption(String inputCipherTextMessage, String inputKeyword) {
-        String rusInputCipherText = getOnlyRussianCharacters(inputCipherTextMessage);
+        String rusInputCipherText = getOnlyRussianCharactersAndDot(inputCipherTextMessage);
         String cipherTextMessage = rusInputCipherText.toUpperCase().replace(" ", "");
         String keyword = inputKeyword.toUpperCase();
 
         int numberOfRows = cipherTextMessage.length() / keyword.length();
+
+        System.out.println(cipherTextMessage);
 
         int[] keywordNumberArr = transformKeywordToKeywordNumberArr(keyword);
         int[] columnOrderOfKeyword = getColumnOrder(keyword, keywordNumberArr);
@@ -155,11 +168,12 @@ public class ColumnMethodEncryption {
 
         char[][] cipherTextMessageMatrix = transformCipherTextMessageToCipherTextMessageMatrix(numberOfRows, keyword, cipherTextMessage, columnOrderOfKeyword);
 
+        printPlainTextMessageArr(numberOfRows, keyword, cipherTextMessageMatrix);
 
         StringBuilder plainTextMessage = transformCipherTextMessageMatrixToPlainTextMessage(numberOfRows, keyword, cipherTextMessageMatrix);
         System.out.println("Plain Text: " + plainTextMessage);
 
-        return plainTextMessage.toString();
+        return plainTextMessage.toString().replace(".", "");
     }
 
 

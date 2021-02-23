@@ -197,6 +197,7 @@ public class Controller {
     }
 
 
+
     private int getEncryptionMethod() {
         int selectedEncryptionMethod = 0;
         if (columnEncryptRadioBtn.isSelected()) selectedEncryptionMethod = 1;

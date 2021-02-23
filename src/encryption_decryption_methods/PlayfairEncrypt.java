@@ -45,7 +45,12 @@ public class PlayfairEncrypt {
         int currentIndex = 0;
         while (currentIndex < correctStr.length() - 1) {
             if (correctStr.charAt(currentIndex) == correctStr.charAt(currentIndex + 1)) {
-                correctStr.insert(currentIndex + 1, 'X');
+                if(correctStr.charAt(currentIndex) == 'X'){
+                    correctStr.insert(currentIndex + 1, 'Q');
+                }else{
+                    correctStr.insert(currentIndex + 1, 'X');
+
+                }
             }
             currentIndex += 2;
         }
